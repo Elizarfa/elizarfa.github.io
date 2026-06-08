@@ -144,7 +144,7 @@ section{padding:88px 60px;border-bottom:.5px solid var(--ln);position:relative;z
 .contact-l{padding:60px 52px;border-right:.5px solid var(--ln);display:flex;flex-direction:column;justify-content:space-between}
 .contact-r{padding:60px 52px}
 
-.chl-wrap{text-align:center}
+.chl-wrap{display:flex;flex-direction:column}
 .chl-lets{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(22px,2.5vw,34px);color:var(--t2);line-height:1;display:block}
 .chl-work{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,5vw,64px);color:var(--t1);line-height:1;display:block;margin:4px 0}
 .chl-tog{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(22px,2.5vw,34px);font-style:italic;color:var(--gld);line-height:1;display:block}
@@ -343,7 +343,6 @@ footer{padding:28px 60px;display:flex;flex-direction:column;align-items:center;g
       <div class="plangs"><span class="plang">RU &rarr; EN</span></div>
     </a>
     <div class="pc pcs reveal" style="transition-delay:.3s">
-      <div class="pimg"><span>NDA</span></div>
       <div class="ptag">Commercial Fiction &middot; Publishing Client</div>
       <div class="pt">Novel Localisation</div>
       <div class="pd">Full-length commercial fiction localised for a publishing client. Narrative voice, register, and cultural references preserved throughout.</div>
@@ -408,9 +407,9 @@ footer{padding:28px 60px;display:flex;flex-direction:column;align-items:center;g
   <div class="contact-grid">
     <div class="contact-l reveal">
       <div class="chl-wrap">
-        <span class="chl-lets">Let&rsquo;s</span>
-        <span class="chl-work">Work</span>
-        <span class="chl-tog">Together.</span>
+        <span class="chl-lets" style="text-align:left">Let&rsquo;s</span>
+        <span class="chl-work" style="text-align:center">Work</span>
+        <span class="chl-tog" style="text-align:right">Together.</span>
         <p class="cnote">Available for game localisation projects, literary translation, and LQA work. Response within 48 hours.</p>
       </div>
       <div class="contact-photo"><span>Photo / Illustration</span></div>
