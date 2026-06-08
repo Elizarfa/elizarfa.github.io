@@ -11,18 +11,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:  #641a36;
-  --bg2: #741e3e;
-  --bg3: #842244;
-  --ln:  rgba(160,50,70,0.25);
-  --red: #c03050;
-  --rdl: #e04060;
-  --gld: #d4a060;
-  --gll: #eabb80;
-  --t1:  #f8eedf;
-  --t2:  #e2ccac;
-  --t3:  #c0a07a;
-  --t4:  #907060;
+  --bg:   #641a36;
+  --bg2:  #741e3e;
+  --bg3:  #842244;
+  --ln:   rgba(255,180,160,0.18);
+  --ln2:  rgba(255,180,160,0.1);
+  --red:  #f06080;
+  --rdl:  #f88090;
+  --gld:  #d4a060;
+  --gll:  #eabb80;
+  --t1:   #fdf4e8;
+  --t2:   #f0d8b8;
+  --t3:   #d4a878;
+  --t4:   #a87858;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -31,6 +32,7 @@ body{background:var(--bg);color:var(--t2);font-family:'Jost',sans-serif;font-wei
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
 .reveal.visible{opacity:1;transform:none}
 
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 60px;background:rgba(80,18,38,.95);backdrop-filter:blur(16px);border-bottom:.5px solid var(--ln);transition:padding .3s}
 nav.sc{padding:12px 60px}
 .logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:16px;letter-spacing:.2em;text-transform:uppercase;color:var(--gld);text-decoration:none}
@@ -40,16 +42,23 @@ nav.sc{padding:12px 60px}
 .bgr{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .bgr span{display:block;width:22px;height:.5px;background:var(--gld)}
 
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 60px 88px;border-bottom:.5px solid var(--ln);position:relative}
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:60px;padding:120px 60px 88px;border-bottom:.5px solid var(--ln);position:relative}
+.hero-left{}
+.hero-right{display:flex;align-items:center;justify-content:center;min-height:360px;border:.5px solid var(--ln2);position:relative;overflow:hidden}
+.hero-img-placeholder{width:100%;height:100%;min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(0,0,0,.15)}
+.hero-img-placeholder span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--t4)}
+
 .htag{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--rdl);margin-bottom:22px;opacity:0;animation:up .9s ease .2s forwards}
-.hname{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(56px,9vw,104px);line-height:.95;color:var(--t1);opacity:0;animation:up .9s ease .4s forwards}
+.hname{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(44px,6vw,76px);line-height:.95;color:var(--t1);opacity:0;animation:up .9s ease .4s forwards}
 .hname em{font-style:italic;color:var(--gld)}
-.hline{width:56px;height:.5px;background:var(--red);margin:30px 0;opacity:0;animation:up .9s ease .6s forwards}
-.hsub{font-size:18px;line-height:1.7;color:var(--t2);max-width:580px;opacity:0;animation:up .9s ease .8s forwards}
-.hlangs{display:flex;margin-top:36px;opacity:0;animation:up .9s ease 1s forwards}
-.hlang{font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:9px 22px;border:.5px solid var(--ln);color:var(--t3);transition:color .25s,border-color .25s}
+.hline{width:56px;height:.5px;background:var(--red);margin:28px 0;opacity:0;animation:up .9s ease .6s forwards}
+.hsub{font-size:17px;line-height:1.7;color:var(--t2);max-width:480px;opacity:0;animation:up .9s ease .8s forwards}
+.hlangs{display:flex;margin-top:32px;opacity:0;animation:up .9s ease 1s forwards}
+.hlang{font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:9px 20px;border:.5px solid var(--ln);color:var(--t3);transition:color .25s,border-color .25s}
 .hlang+.hlang{border-left:none}
 .hlang:hover{color:var(--gll);border-color:var(--red)}
+
 .hscr{position:absolute;bottom:36px;right:60px;display:flex;align-items:center;gap:12px;opacity:0;animation:fi 1s ease 1.4s forwards}
 .hscrt{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--t4)}
 .hscrl{width:44px;height:.5px;background:var(--red);overflow:hidden;position:relative}
@@ -59,97 +68,127 @@ nav.sc{padding:12px 60px}
 @keyframes fi{to{opacity:1}}
 @keyframes sc{0%{left:-100%}60%{left:100%}100%{left:100%}}
 
+/* SECTIONS */
 section{padding:96px 60px;border-bottom:.5px solid var(--ln);position:relative;z-index:1}
-.slbl{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--red);margin-bottom:56px;display:flex;align-items:center;gap:16px}
-.slbl::before{content:'';display:block;width:24px;height:.5px;background:var(--red)}
+.slbl{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--rdl);margin-bottom:56px;display:flex;align-items:center;gap:16px}
+.slbl::before{content:'';display:block;width:24px;height:.5px;background:var(--rdl)}
 
 /* ABOUT */
-.awrap{display:grid;grid-template-columns:5fr 6fr;gap:72px;max-width:1160px}
+.awrap{display:grid;grid-template-columns:5fr 6fr;gap:72px;max-width:1200px;margin:0 auto}
 .ahl{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,3.2vw,44px);line-height:1.15;color:var(--t1)}
 .ahl em{font-style:italic;color:var(--gld)}
 .astats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ln);margin-top:44px}
-.stat{background:var(--bg);padding:22px 26px}
+.stat{background:rgba(0,0,0,.2);padding:22px 26px}
 .stn{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:var(--gld);line-height:1}
 .stl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-top:5px}
 .abody{font-size:17px;line-height:1.85;color:var(--t2)}
 .abody p+p{margin-top:20px}
 
+/* WHY */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--ln);max-width:1200px;margin:0 auto}
+.why-card{background:rgba(0,0,0,.15);padding:36px 32px;transition:background .35s}
+.why-card:hover{background:rgba(0,0,0,.28)}
+.why-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--t1);margin-bottom:10px;line-height:1.2}
+.why-title em{font-style:italic;color:var(--gld)}
+.why-desc{font-size:15px;line-height:1.7;color:var(--t2)}
+
 /* SERVICES */
-.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln)}
-.svc{background:var(--bg2);padding:36px 28px;position:relative;overflow:hidden;transition:background .35s}
-.svc::after{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .35s}
-.svc:hover{background:var(--bg3)}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);max-width:1200px;margin:0 auto}
+.svc{background:rgba(0,0,0,.15);padding:36px 28px;position:relative;overflow:hidden;transition:background .35s}
+.svc::after{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--gld);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.svc:hover{background:rgba(0,0,0,.28)}
 .svc:hover::after{transform:scaleX(1)}
 .svn{font-size:11px;color:var(--t4);letter-spacing:.1em;margin-bottom:18px}
 .svt{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--t1);margin-bottom:12px;line-height:1.2}
 .svd{font-size:15px;line-height:1.7;color:var(--t2)}
 
 /* PORTFOLIO */
-.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln)}
-.pc{background:var(--bg2);padding:32px 28px;text-decoration:none;display:block;position:relative;overflow:hidden;transition:background .35s}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);max-width:1200px;margin:0 auto}
+.pc{background:rgba(0,0,0,.15);padding:32px 28px;text-decoration:none;display:block;position:relative;overflow:hidden;transition:background .35s}
 .pc::after{content:'↗';position:absolute;top:22px;right:22px;font-size:15px;color:var(--t3);opacity:0;transform:translate(-4px,4px);transition:opacity .3s,transform .3s}
-.pc:hover{background:var(--bg3)}
+.pc:hover{background:rgba(0,0,0,.28)}
 .pc:hover::after{opacity:1;transform:none}
 .pcs{cursor:default}
 .ptag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--rdl);margin-bottom:12px}
 .pt{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--t1);margin-bottom:10px;line-height:1.2}
 .pd{font-size:15px;color:var(--t2);line-height:1.7}
-.pmeta{margin-top:16px;display:flex;flex-direction:column;gap:6px}
-.pmeta-row{font-size:11px;color:var(--t3);letter-spacing:.06em}
-.pmeta-row strong{color:var(--gld);font-weight:400}
+.pmeta{margin-top:16px;display:flex;flex-direction:column;gap:5px}
+.pmeta-row{font-size:11px;color:var(--t3)}
+.pmeta-row strong{color:var(--gll);font-weight:400}
 .plangs{display:flex;gap:6px;margin-top:16px;flex-wrap:wrap}
 .plang{font-size:10px;letter-spacing:.1em;padding:3px 10px;border:.5px solid var(--ln);color:var(--t3)}
 .pnda{display:inline-block;margin-top:16px;font-size:10px;letter-spacing:.12em;padding:4px 12px;border:.5px solid var(--ln);color:var(--t3)}
 
+/* IN PROGRESS */
+.progress-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);max-width:1200px;margin:24px auto 0}
+.pg-card{background:rgba(0,0,0,.1);padding:24px 24px}
+.pg-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--t4);margin-bottom:8px}
+.pg-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--t3);line-height:1.3}
+
 /* CV */
-.cvrow{display:grid;grid-template-columns:180px 1fr;gap:32px;padding:24px 0;border-top:.5px solid var(--ln);align-items:baseline}
+.cvwrap{max-width:1200px;margin:0 auto}
+.cvrow{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:24px 0;border-top:.5px solid var(--ln);align-items:baseline}
 .cvrow:last-of-type{border-bottom:.5px solid var(--ln)}
 .cvk{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--t3)}
 .cvv{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--t1)}
-.btncv{display:inline-flex;align-items:center;gap:10px;margin-top:40px;padding:13px 32px;border:.5px solid var(--red);color:var(--gll);font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:background .3s,border-color .3s}
-.btncv:hover{background:rgba(160,50,70,.18);border-color:var(--rdl)}
+.btncv{display:inline-flex;align-items:center;gap:10px;margin-top:40px;padding:13px 32px;border:.5px solid var(--gld);color:var(--gll);font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:background .3s,border-color .3s}
+.btncv:hover{background:rgba(0,0,0,.2)}
 
 /* CONTACT */
-.cwrap{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.cwrap{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1200px;margin:0 auto;background:var(--ln);gap:1px}
+.cleft{padding:48px 52px;background:rgba(0,0,0,.15)}
+.cright{padding:48px 52px;background:rgba(0,0,0,.08)}
 .chl{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,40px);font-weight:300;line-height:1.25;color:var(--t1)}
 .chl em{font-style:italic;color:var(--gld)}
 .cnote{font-size:16px;line-height:1.8;color:var(--t2);margin-top:18px}
+
+/* image placeholder for contact */
+.cimg{margin-top:32px;height:180px;border:.5px solid var(--ln2);display:flex;align-items:center;justify-content:center}
+.cimg span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--t4)}
+
 .frow{border-top:.5px solid var(--ln);padding:14px 0}
 .frow:last-of-type{border-bottom:.5px solid var(--ln)}
 .frow label{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
 .frow input,.frow textarea,.frow select{width:100%;background:transparent;border:none;outline:none;color:var(--t1);font-family:'Jost',sans-serif;font-weight:300;font-size:16px;padding:4px 0 8px;resize:none;appearance:none}
 .frow input::placeholder,.frow textarea::placeholder{color:var(--t4)}
-.frow select option{background:var(--bg2)}
+.frow select option{background:#641a36}
 .hp{display:none!important;visibility:hidden}
-.btns{margin-top:28px;padding:13px 36px;background:transparent;border:.5px solid var(--red);color:var(--gll);font-family:'Jost',sans-serif;font-weight:300;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s,border-color .3s}
-.btns:hover{background:rgba(160,50,70,.2);border-color:var(--rdl)}
+.btns{margin-top:28px;padding:13px 36px;background:transparent;border:.5px solid var(--gld);color:var(--gll);font-family:'Jost',sans-serif;font-weight:300;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s}
+.btns:hover{background:rgba(0,0,0,.2)}
 .btns:disabled{opacity:.4;cursor:not-allowed}
 .fmsg{font-size:13px;color:var(--t3);margin-top:12px;min-height:20px}
 .fmsg.ok{color:var(--gll)}
 .fmsg.er{color:var(--rdl)}
 
-footer{padding:36px 60px;display:flex;justify-content:space-between;align-items:center;border-top:.5px solid var(--ln)}
+/* FOOTER */
+footer{padding:28px 60px;display:flex;justify-content:space-between;align-items:center;border-top:.5px solid var(--ln)}
 .fc{font-size:11px;letter-spacing:.08em;color:var(--t4)}
-.flinks{display:flex;gap:28px}
-.flinks a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);text-decoration:none;transition:color .25s}
-.flinks a:hover{color:var(--gll)}
+.fphrase{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--t3)}
 
+/* MOBILE */
+@media(max-width:1024px){
+  #hero{grid-template-columns:1fr;gap:40px}
+  .hero-right{min-height:240px}
+  .awrap,.why-grid,.cwrap{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .sgrid{grid-template-columns:1fr 1fr}
+  .pgrid{grid-template-columns:1fr}
+  .progress-grid{grid-template-columns:1fr 1fr}
+  .cvrow{grid-template-columns:1fr;gap:6px}
+}
 @media(max-width:900px){
   nav{padding:16px 24px}nav.sc{padding:10px 24px}
   .nl{display:none}
-  .nl.op{display:flex;flex-direction:column;position:fixed;inset:0;background:rgba(12,4,7,.97);justify-content:center;align-items:center;gap:36px;z-index:99}
+  .nl.op{display:flex;flex-direction:column;position:fixed;inset:0;background:rgba(60,10,24,.97);justify-content:center;align-items:center;gap:36px;z-index:99}
   .nl.op a{font-size:16px}
   .bgr{display:flex;z-index:101}
   #hero,section{padding-left:24px;padding-right:24px}
+  .cleft,.cright{padding:36px 24px}
   .hscr{right:24px}
-  .awrap,.cwrap{grid-template-columns:1fr;gap:48px}
-  .sgrid{grid-template-columns:1fr 1fr}
-  .pgrid{grid-template-columns:1fr}
-  .cvrow{grid-template-columns:1fr;gap:6px}
-  footer{flex-direction:column;gap:14px;text-align:center;padding:28px 24px}
+  footer{flex-direction:column;gap:10px;text-align:center;padding:24px}
 }
 @media(max-width:560px){
-  .sgrid{grid-template-columns:1fr}
+  .sgrid,.why-grid,.progress-grid{grid-template-columns:1fr}
   .astats{grid-template-columns:1fr 1fr}
 }
 </style>
@@ -169,14 +208,21 @@ footer{padding:36px 60px;display:flex;justify-content:space-between;align-items:
 </nav>
 
 <section id="hero">
-  <div class="htag">Game Localisation Specialist &middot; Indie Game Developer</div>
-  <h1 class="hname">Olena<br><em>Karpenko</em></h1>
-  <div class="hline"></div>
-  <p class="hsub">Helping games reach English, Ukrainian, and Russian audiences — from someone who builds them too.</p>
-  <div class="hlangs">
-    <div class="hlang">English</div>
-    <div class="hlang">Ukrainian</div>
-    <div class="hlang">Russian</div>
+  <div class="hero-left">
+    <div class="htag">Game Localisation Specialist &middot; Indie Game Developer</div>
+    <h1 class="hname">Olena<br><em>Karpenko</em></h1>
+    <div class="hline"></div>
+    <p class="hsub">Helping games reach English, Ukrainian, and Russian audiences &mdash; from someone who builds them too.</p>
+    <div class="hlangs">
+      <div class="hlang">English</div>
+      <div class="hlang">Ukrainian</div>
+      <div class="hlang">Russian</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-placeholder">
+      <span>Photo / Illustration</span>
+    </div>
   </div>
   <div class="hscr"><span class="hscrt">Scroll</span><div class="hscrl"></div></div>
 </section>
@@ -194,9 +240,31 @@ footer{padding:36px 60px;display:flex;justify-content:space-between;align-items:
       </div>
     </div>
     <div class="abody reveal" style="transition-delay:.15s">
-      <p>Unlike traditional translators, I develop games myself. I understand narrative systems, player experience, UI limitations, platform requirements, and the realities of indie production — which means I do not simply translate words: I localise the experience.</p>
-      <p>My background spans literary fiction, technical documentation, academic writing, and interactive media. I bring the same rigour to a game's UI strings as to a novel's prose — because in both cases, the wrong word breaks the spell.</p>
+      <p>Unlike traditional translators, I develop games myself. I understand narrative systems, player experience, UI limitations, platform requirements, and the realities of indie production &mdash; which means I do not simply translate words: I localise the experience.</p>
+      <p>My background spans literary fiction, technical documentation, academic writing, and interactive media. I bring the same rigour to a game&rsquo;s UI strings as to a novel&rsquo;s prose &mdash; because in both cases, the wrong word breaks the spell.</p>
       <p>I work between English, Ukrainian, and Russian, with a particular focus on game localisation, LQA, and narrative adaptation for interactive projects.</p>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="slbl">Why Work With Me</div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-title"><em>I build games myself</em></div>
+      <div class="why-desc">So I localise what I understand, not what I guess. I know how string tables work, what UI constraints feel like, and why a three-word button label matters.</div>
+    </div>
+    <div class="why-card reveal" style="transition-delay:.1s">
+      <div class="why-title"><em>Voice is everything</em></div>
+      <div class="why-desc">Your characters sound like themselves, not like translations. I preserve tone, register, and personality &mdash; because players notice when something feels off.</div>
+    </div>
+    <div class="why-card reveal" style="transition-delay:.2s">
+      <div class="why-title"><em>Full pipeline fluency</em></div>
+      <div class="why-desc">From Unity string tables to Steam store pages &mdash; I speak the full language of game production. No handholding required on the technical side.</div>
+    </div>
+    <div class="why-card reveal" style="transition-delay:.3s">
+      <div class="why-title"><em>One person, zero layers</em></div>
+      <div class="why-desc">You talk to the specialist, not a project manager. Direct communication means faster decisions, fewer misunderstandings, and better results.</div>
     </div>
   </div>
 </section>
@@ -207,7 +275,7 @@ footer{padding:36px 60px;display:flex;justify-content:space-between;align-items:
     <div class="svc reveal">
       <div class="svn">01</div>
       <div class="svt">Game Localisation</div>
-      <div class="svd">UI/UX strings, dialogue, narrative — culturally adapted for EN, UK, and RU markets. I play the game, not just translate it.</div>
+      <div class="svd">UI/UX strings, dialogue, narrative &mdash; culturally adapted for EN, UK, and RU markets. I play the game, not just translate it.</div>
     </div>
     <div class="svc reveal" style="transition-delay:.1s">
       <div class="svn">02</div>
@@ -217,7 +285,7 @@ footer{padding:36px 60px;display:flex;justify-content:space-between;align-items:
     <div class="svc reveal" style="transition-delay:.2s">
       <div class="svn">03</div>
       <div class="svt">Steam &amp; Store Pages</div>
-      <div class="svd">Descriptions, metadata, and marketing copy that convert — adapted for regional tone and platform conventions.</div>
+      <div class="svd">Descriptions, metadata, and marketing copy adapted for regional audiences and platform conventions.</div>
     </div>
     <div class="svc reveal" style="transition-delay:.3s">
       <div class="svn">04</div>
@@ -233,7 +301,7 @@ footer{padding:36px 60px;display:flex;justify-content:space-between;align-items:
     <a href="https://play.google.com/store/apps/details?id=com.GatoInaryGames.Kototoro" target="_blank" rel="noopener noreferrer" class="pc reveal">
       <div class="ptag">Game &middot; Android &middot; Solo Development</div>
       <div class="pt">Kototoro</div>
-      <div class="pd">Tarot divination and hidden objects game. Built entirely solo — writing, art, code, and localisation all by hand.</div>
+      <div class="pd">Tarot divination and hidden objects game. Built entirely solo &mdash; writing, art, code, and localisation all by hand.</div>
       <div class="pmeta">
         <div class="pmeta-row"><strong>1,000+</strong> installs on Google Play</div>
         <div class="pmeta-row"><strong>Role:</strong> Developer, writer, artist, localiser</div>
@@ -243,7 +311,7 @@ footer{padding:36px 60px;display:flex;justify-content:space-between;align-items:
     <a href="https://store.steampowered.com/app/3173050/Jellitito/" target="_blank" rel="noopener noreferrer" class="pc reveal" style="transition-delay:.1s">
       <div class="ptag">Game &middot; Steam &middot; Localiser</div>
       <div class="pt">Jellitito</div>
-      <div class="pd">Casual clicker game. Localised the core language set for the Steam release.</div>
+      <div class="pd">Casual clicker game. 71% positive reviews on Steam. Localised the core language set for the release.</div>
       <div class="pmeta">
         <div class="pmeta-row"><strong>Role:</strong> Localisation specialist</div>
       </div>
@@ -262,9 +330,6 @@ footer{padding:36px 60px;display:flex;justify-content:space-between;align-items:
       <div class="ptag">Commercial Fiction &middot; Publishing Client</div>
       <div class="pt">Novel Localisation</div>
       <div class="pd">Full-length commercial fiction localised for a publishing client. Narrative voice, register, and cultural references preserved.</div>
-      <div class="pmeta">
-        <div class="pmeta-row"><strong>Role:</strong> Localisation specialist</div>
-      </div>
       <div class="plangs"><span class="plang">EN &rarr; RU</span></div>
       <div class="pnda">NDA</div>
     </div>
@@ -274,36 +339,55 @@ footer{padding:36px 60px;display:flex;justify-content:space-between;align-items:
       <div class="pd">Academic texts, technical documentation, and structured content requiring precise domain terminology.</div>
       <div class="plangs"><span class="plang">EN &harr; RU</span><span class="plang">EN &harr; UK</span></div>
     </div>
-    <div class="pc pcs reveal" style="transition-delay:.5s;display:flex;flex-direction:column;justify-content:flex-end">
-      <div class="ptag">In Development</div>
-      <div class="pt" style="color:var(--t3)">More Coming</div>
-      <div class="pd" style="color:var(--t3)">New projects in progress. Case studies available on request.</div>
+    <div class="pc pcs reveal" style="transition-delay:.5s">
+      <div class="ptag">Mentorship &middot; Volunteer</div>
+      <div class="pt">Indie Dev Mentoring</div>
+      <div class="pd">Mentoring indie developers in game design, narrative, visual development, and localisation.</div>
+      <div class="plangs"><span class="plang">Game Design</span><span class="plang">Narrative</span><span class="plang">L10n</span></div>
+    </div>
+  </div>
+
+  <div class="progress-grid reveal" style="transition-delay:.2s">
+    <div class="pg-card">
+      <div class="pg-tag">In Development</div>
+      <div class="pg-title">DiBrain — Roguelike</div>
+    </div>
+    <div class="pg-card">
+      <div class="pg-tag">In Progress</div>
+      <div class="pg-title">World Without Flaws, Vol. III</div>
+    </div>
+    <div class="pg-card">
+      <div class="pg-tag">In Progress</div>
+      <div class="pg-title">DiBrain: Step by Step. SoloDeveling</div>
+    </div>
+    <div class="pg-card">
+      <div class="pg-tag">In Progress</div>
+      <div class="pg-title">Fantasy Novella</div>
     </div>
   </div>
 </section>
 
 <section id="cv">
   <div class="slbl">Background</div>
-  <div class="reveal">
+  <div class="cvwrap reveal">
     <div class="cvrow"><div class="cvk">Specialisation</div><div class="cvv">Game localisation, LQA, Steam pages, literary translation</div></div>
-    <div class="cvrow"><div class="cvk">Languages</div><div class="cvv">English &middot; Ukrainian &middot; Russian — all directions</div></div>
-    <div class="cvrow"><div class="cvk">Background</div><div class="cvv">Indie game developer &middot; Published author &middot; Localisation specialist</div></div>
-    <div class="cvrow"><div class="cvk">Tools &amp; Platforms</div><div class="cvv">Unity &middot; Steam &middot; Google Play &middot; Amazon KDP &middot; standard CAT-compatible formats</div></div>
-    <a href="#contact" class="btncv">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-      Request CV
-    </a>
+    <div class="cvrow"><div class="cvk">Languages</div><div class="cvv">EN &harr; RU &nbsp;&middot;&nbsp; EN &harr; UK</div></div>
+    <div class="cvrow"><div class="cvk">Volume</div><div class="cvv">300,000+ words delivered across games, interactive fiction, and publishing</div></div>
+    <div class="cvrow"><div class="cvk">Background</div><div class="cvv">Indie game developer &middot; Published author &middot; Volunteer mentor &middot; PhD in Economics</div></div>
+    <div class="cvrow"><div class="cvk">Tools</div><div class="cvv">Unity &middot; SmartCAT &middot; DeepL &middot; JSON &middot; Git &middot; Photoshop &middot; Procreate</div></div>
+    <a href="#contact" class="btncv">Request CV</a>
   </div>
 </section>
 
 <section id="contact">
   <div class="slbl">Contact</div>
   <div class="cwrap">
-    <div class="reveal">
-      <h2 class="chl">Let's work<br><em>together.</em></h2>
+    <div class="cleft reveal">
+      <h2 class="chl">Let&rsquo;s work<br><em>together.</em></h2>
       <p class="cnote">Available for game localisation projects, literary translation, and LQA work. Response within 48 hours.</p>
+      <div class="cimg"><span>Photo / Illustration</span></div>
     </div>
-    <div class="reveal" style="transition-delay:.15s">
+    <div class="cright reveal" style="transition-delay:.15s">
       <form id="cf" action="https://formspree.io/f/maqzobky" method="POST">
         <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off">
         <div class="frow"><label for="fn">Name</label><input type="text" id="fn" name="name" placeholder="Your name" required autocomplete="name"></div>
@@ -328,12 +412,8 @@ footer{padding:36px 60px;display:flex;justify-content:space-between;align-items:
 </section>
 
 <footer>
-  <div class="fc">&copy; 2025 Olena Karpenko. All rights reserved.</div>
-  <div class="flinks">
-    <a href="https://play.google.com/store/apps/details?id=com.GatoInaryGames.Kototoro" target="_blank" rel="noopener noreferrer">Google Play</a>
-    <a href="https://store.steampowered.com/app/3173050/Jellitito/" target="_blank" rel="noopener noreferrer">Steam</a>
-    <a href="https://www.amazon.com/stores/author/B0F3W7Z9W8" target="_blank" rel="noopener noreferrer">Amazon</a>
-  </div>
+  <div class="fc">&copy; 2025 Olena Karpenko</div>
+  <div class="fphrase">Precision is not a skill. It&rsquo;s a habit.</div>
 </footer>
 
 <script>
