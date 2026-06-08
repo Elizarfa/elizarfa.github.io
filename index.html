@@ -46,7 +46,7 @@ nav.sc{padding:11px 60px}
 /* ── HERO ── */
 #hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:60px;border-bottom:.5px solid var(--ln)}
 .hero-l{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 52px;text-align:center}
-.hero-r{display:flex;align-items:center;justify-content:center;padding:60px 52px;border-left:.5px solid var(--ln)}
+.hero-r{display:flex;align-items:stretch;padding:0;border-left:.5px solid var(--ln);overflow:hidden}
 
 .htag{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--red);margin-bottom:24px;opacity:0;animation:up .9s ease .2s forwards}
 .hname{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,4.5vw,60px);line-height:1.05;color:var(--t1);opacity:0;animation:up .9s ease .4s forwards}
@@ -57,8 +57,8 @@ nav.sc{padding:11px 60px}
 .hlang{font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:8px 20px;border:.5px solid var(--ln);color:var(--t3)}
 .hlang+.hlang{border-left:none}
 
-.hero-photo{width:100%;max-width:360px;aspect-ratio:3/4;background:var(--bg4);border:.5px solid var(--ln);display:flex;align-items:center;justify-content:center;opacity:0;animation:fi 1s ease 1.2s forwards}
-.hero-photo span{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--t4)}
+.hero-photo{width:100%;height:100%;min-height:500px;background:var(--bg4);border:none;display:block;opacity:0;animation:fi 1s ease 1.2s forwards;overflow:hidden}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
 
 @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @keyframes fi{to{opacity:1}}
@@ -151,7 +151,8 @@ section{padding:88px 60px;border-bottom:.5px solid var(--ln);position:relative;z
 
 .cnote{font-size:15px;line-height:1.8;color:var(--t2);margin-top:24px;text-align:center}
 
-.contact-photo{width:100%;background:var(--bg4);border:.5px solid var(--ln);display:flex;align-items:center;justify-content:center;margin-top:32px;flex:1;min-height:160px}
+.contact-photo{width:100%;height:280px;background:var(--bg4);border:.5px solid var(--ln);display:flex;align-items:center;justify-content:center;margin-top:32px;overflow:hidden;flex-shrink:0}
+.contact-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .contact-photo span{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--t4)}
 
 .frow{border-top:.5px solid var(--ln);padding:12px 0}
